@@ -42,7 +42,7 @@ class App extends Component {
         </div>
         <button onClick={this.handleSubmit}>new quote</button><br />
         <a href={`https://twitter.com/intent/tweet?text=` + this.state.quote}><button>Tweet</button></a>
-        <a href="google.com"><button>Tumblr</button></a>
+        <a href={`https://www.tumblr.com/widgets/share/tool?content=${this.state.quote}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`}><button>Tumblr</button></a>
       </div>
     );
   }
@@ -51,4 +51,4 @@ class App extends Component {
 export default App;
 
 // https://twitter.com/intent/tweet?text=Hello%20World
-// https://www.tumblr.com/widgets/share/tool?content=Two%20roads%20diverged%20in%20a%20wood%2C%20and%20I%E2%80%94I%20took%20the%20one%20less%20traveled%20by%2C%20And%20that%20has%20made%20all%20the%20difference.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button
+// https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=Socrates&content=An%20unexamined%20life%20is%20not%20worth%20living.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button
