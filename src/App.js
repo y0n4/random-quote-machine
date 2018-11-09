@@ -13,28 +13,35 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    axios.get('https://talaikis.com/api/quotes/random/')
-      .then(res => {
-        console.log(res.data);
-        this.setState({quote: res.data.quote})
-      }).catch(error => {console.log(error)});
-  }
-
-  handleSubmit = () => {
-    //when clicked, do an api call
-    console.log('button is clicked, yay');
+  randomQuote() {
     axios.get('https://talaikis.com/api/quotes/random/')
     .then(res => {
       console.log(res.data);
-      this.setState({quote: res.data.quote})
+      this.setState({
+        quote: res.data.quote,
+        author: res.data.author,
+      })
     }).catch(error => {console.log(error)});
+  }
+
+  componentDidMount() {
+    this.randomQuote();
+  }
+
+  handleSubmit() {
+    console.log('button is clicked, yay');
+    this.randomQuote();
   }
 
   render() {
     return (
       <div className="App">
-        <div><p>{this.state.quote}</p></div>
+        <div>
+          <p>{this.state.quote}</p>
+          <p>{this.state.author}</p>
+        </div>
+        <button>Tweet</button>
+        <button>Tumblr</button>
         <button onClick={this.handleSubmit}>new quote</button>
       </div>
     );
