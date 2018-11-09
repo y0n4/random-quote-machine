@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import logo from './logo.svg';
 import './App.css';
+// import { Tweet } from 'react-twitter-widgets'
 
 class App extends Component {
   constructor(props) {
@@ -36,13 +37,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <p>{this.state.quote}</p>
-          <p>{this.state.author}</p>
+        <div className="quote-container">
+        <div id="quote-box">
+          <p id="text">{this.state.quote}</p>
+          <p id="author">{this.state.author}</p>
         </div>
-        <button onClick={this.handleSubmit}>new quote</button><br />
-        <a href={`https://twitter.com/intent/tweet?text=` + this.state.quote}><button>Tweet</button></a>
-        <a href={`https://www.tumblr.com/widgets/share/tool?content=${this.state.quote}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`}><button>Tumblr</button></a>
+
+        <div className="links">
+          <button id="new-quote" onClick={this.handleSubmit}>
+            New Quote
+          </button><br />
+          <a id="tweet-quote" className="twitter-share-button" href={`https://twitter.com/intent/tweet?text=` + this.state.quote}><button>
+            Tweet
+          </button></a>
+          <a href={`https://www.tumblr.com/widgets/share/tool?content=${this.state.quote}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`}><button>
+            Tumblr
+          </button></a>
+        </div>
+        </div>
+
+        <div className='yona'>webpage by yona</div>
       </div>
     );
   }
