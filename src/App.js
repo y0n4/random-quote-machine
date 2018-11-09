@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+// import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quote: '...loading',
+      author: '',
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('https://talaikis.com/api/quotes/random/')
+      .then(res => {
+        console.log(res.data);
+        this.setState({quote: res.data.quote})
+      }).catch(error => {console.log(error)});
+  }
+
+  handleSubmit = () => {
+    //when clicked, do an api call
+    console.log('button is clicked, yay');
+    axios.get('https://talaikis.com/api/quotes/random/')
+    .then(res => {
+      console.log(res.data);
+      this.setState({quote: res.data.quote})
+    }).catch(error => {console.log(error)});
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div><p>{this.state.quote}</p></div>
+        <button onClick={this.handleSubmit}>new quote</button>
       </div>
     );
   }
