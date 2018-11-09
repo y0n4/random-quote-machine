@@ -18,7 +18,7 @@ class App extends Component {
     .then(res => {
       console.log(res.data);
       this.setState({
-        quote: res.data.quote,
+        quote: `"${res.data.quote}"`,
         author: res.data.author,
       })
     }).catch(error => {console.log(error)});
@@ -40,12 +40,15 @@ class App extends Component {
           <p>{this.state.quote}</p>
           <p>{this.state.author}</p>
         </div>
-        <button>Tweet</button>
-        <button>Tumblr</button>
-        <button onClick={this.handleSubmit}>new quote</button>
+        <button onClick={this.handleSubmit}>new quote</button><br />
+        <a href={`https://twitter.com/intent/tweet?text=` + this.state.quote}><button>Tweet</button></a>
+        <a href="google.com"><button>Tumblr</button></a>
       </div>
     );
   }
 }
 
 export default App;
+
+// https://twitter.com/intent/tweet?text=Hello%20World
+// https://www.tumblr.com/widgets/share/tool?content=Two%20roads%20diverged%20in%20a%20wood%2C%20and%20I%E2%80%94I%20took%20the%20one%20less%20traveled%20by%2C%20And%20that%20has%20made%20all%20the%20difference.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button
